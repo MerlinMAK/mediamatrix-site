@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Matrix — The operating layer behind lean companies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1622;
+  --ink-2:#1B2A3D;
+  --paper:#F6F7F4;
+  --line:#D8DCD4;
+  --cobalt:#2240F2;
+  --cobalt-soft:#E4E9FF;
+  --copper:#C2632B;
+  --mono:'IBM Plex Mono',monospace;
+  --display:'Archivo',sans-serif;
+  --body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--cobalt);color:#fff}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(246,247,244,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--display);font-weight:800;font-stretch:90%;font-size:17px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .mark{width:22px;height:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.logo .mark span{background:var(--ink);border-radius:1px}
+.logo .mark span:nth-child(5){background:var(--cobalt)}
+.nav-links{display:flex;gap:28px;font-size:13.5px;font-weight:500}
+.nav-links a{text-decoration:none;opacity:.75;transition:opacity .15s}
+.nav-links a:hover,.nav-links a:focus-visible{opacity:1}
+.nav-cta{font-family:var(--mono);font-size:12.5px;text-decoration:none;background:var(--ink);color:var(--paper);padding:9px 18px;border-radius:3px;transition:background .15s}
+.nav-cta:hover{background:var(--cobalt)}
+@media(max-width:760px){.nav-links{display:none}nav{padding:14px 20px}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 40px 80px;overflow:hidden}
+#matrix{position:absolute;inset:0;width:100%;height:100%}
+.hero-inner{position:relative;max-width:1180px;margin:0 auto;width:100%}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);margin-bottom:26px}
+h1{font-family:var(--display);font-weight:750;font-stretch:80%;font-size:clamp(46px,7.2vw,96px);line-height:.98;letter-spacing:-.025em;max-width:13ch}
+h1 em{font-style:normal;color:var(--cobalt)}
+.hero-sub{margin-top:30px;font-size:18px;max-width:56ch;color:var(--ink-2)}
+.hero-actions{margin-top:42px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:13.5px;text-decoration:none;padding:14px 26px;border-radius:3px;transition:all .15s}
+.btn-primary{background:var(--cobalt);color:#fff}
+.btn-primary:hover{background:var(--ink)}
+.btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.hero-meta{margin-top:70px;display:flex;gap:48px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.hero-meta b{display:block;font-family:var(--display);font-weight:700;font-size:26px;color:var(--ink);letter-spacing:-.02em}
+@media(max-width:760px){.hero{padding:120px 20px 60px}.hero-meta{gap:28px}}
+
+/* ---------- sections ---------- */
+section{padding:110px 40px}
+@media(max-width:760px){section{padding:70px 20px}}
+.wrap{max-width:1180px;margin:0 auto}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:56px;flex-wrap:wrap}
+h2{font-family:var(--display);font-weight:750;font-stretch:82%;font-size:clamp(32px,4.5vw,52px);letter-spacing:-.02em;line-height:1.04}
+.sec-head p{max-width:42ch;color:var(--ink-2);font-size:15.5px}
+
+/* services grid */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr}}
+.svc{background:var(--paper);padding:40px 36px;position:relative;transition:background .2s}
+.svc:hover{background:#fff}
+.svc .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px}
+.svc h3{font-family:var(--display);font-weight:700;font-stretch:88%;font-size:24px;letter-spacing:-.015em;margin-bottom:14px}
+.svc p{font-size:14.5px;color:var(--ink-2)}
+.svc ul{margin-top:18px;list-style:none;columns:2;column-gap:28px}
+@media(max-width:560px){.svc ul{columns:1}}
+.svc li{font-size:13.5px;color:var(--ink-2);padding:7px 0;border-top:1px dashed var(--line);break-inside:avoid}
+.svc li::before{content:"→ ";font-family:var(--mono);color:var(--copper)}
+.svc-wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:900px){.svc-wide{grid-template-columns:1fr}}
+.svc-wide .big{font-family:var(--display);font-weight:780;font-stretch:78%;font-size:clamp(56px,7vw,104px);letter-spacing:-.03em;line-height:.95;color:var(--cobalt)}
+.svc-wide .big small{display:block;font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:14px}
+
+/* who we serve */
+.serve{padding-top:0}
+.serve-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:900px){.serve-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.serve-row{grid-template-columns:1fr}}
+.serve-cell{background:var(--paper);padding:28px 26px}
+.serve-cell h5{font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:6px;letter-spacing:-.01em}
+.serve-cell p{font-size:13px;color:var(--ink-2)}
+.serve-cell .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);display:block;margin-bottom:12px}
+
+/* dark band — how we work */
+.band{background:var(--ink);color:var(--paper)}
+.band h2{color:#fff}
+.band .sec-head p{color:#9AA8BC}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.step{border-top:2px solid #2A3B52;padding-top:22px}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--copper)}
+.step h4{font-family:var(--display);font-weight:700;font-size:18px;margin:10px 0 8px;letter-spacing:-.01em}
+.step p{font-size:13.5px;color:#9AA8BC}
+
+/* scale band */
+.scale{background:var(--cobalt-soft);padding:80px 40px}
+.scale .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+@media(max-width:900px){.scale .wrap{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.scale .wrap{grid-template-columns:1fr}}
+.scale b{font-family:var(--display);font-weight:780;font-stretch:80%;font-size:clamp(34px,4vw,52px);letter-spacing:-.025em;color:var(--cobalt);display:block;line-height:1}
+.scale span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);display:block;margin-top:10px}
+
+/* AI strip */
+.ai-strip{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+@media(max-width:900px){.ai-strip{grid-template-columns:1fr}}
+.ai-strip h2{margin-bottom:22px}
+.ai-strip p{color:var(--ink-2);font-size:15.5px;margin-bottom:16px}
+.term{background:var(--ink);border-radius:6px;font-family:var(--mono);font-size:12.8px;color:#C8D4E6;padding:26px 24px;line-height:1.9;box-shadow:0 24px 60px -24px rgba(12,22,34,.45)}
+.term .c{color:#5A6B82}
+.term .g{color:#5BD6A0}
+.term .b{color:#7E96FF}
+
+/* cta */
+.cta{background:var(--cobalt);color:#fff;text-align:center;padding:120px 40px}
+.cta h2{color:#fff;max-width:20ch;margin:0 auto 26px}
+.cta p{max-width:52ch;margin:0 auto 38px;color:#D6DDFF;font-size:16px}
+.cta .btn{background:#fff;color:var(--cobalt)}
+.cta .btn:hover{background:var(--ink);color:#fff}
+
+footer{padding:48px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#matrix{display:none}}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.band a:focus-visible{outline-color:#fff}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#"><span class="mark"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>MEDIA MATRIX</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#serve">Who we serve</a>
+    <a href="#how">How we work</a>
+    <a href="#ai">AI practice</a>
+  </div>
+  <a class="nav-cta" href="start.html">Start a project</a>
+</nav>
+
+<header class="hero">
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="eyebrow">Development · AI · Back office · MSO · Media · Advisory</div>
+    <h1>The operating layer behind <em>lean companies</em>.</h1>
+    <p class="hero-sub">Media Matrix builds software, deploys AI into real workflows, runs the back office, administers the entities behind regulated businesses, and routes over a billion visitors a year to targeted brands. Tens of millions of end users are served through the partners we power — while their teams stay small.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="start.html">Start a project</a>
+      <a class="btn btn-ghost" href="#services">See what we run</a>
+    </div>
+    <div class="hero-meta">
+      <div><b>1B+</b>visitors routed to brands annually</div>
+      <div><b>10s of millions</b>end users reached through partners</div>
+      <div><b>24/7</b>global operating coverage</div>
+      <div><b>San Juan, PR</b>headquarters</div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What we run for you</h2>
+      <p>Most firms sell one slice of this. We run the entire operating stack — from the codebase to the boardroom — which is why our clients' org charts stay short.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <div class="tag">01 — Build</div>
+        <h3>Outsourced Development</h3>
+        <p>Senior engineering teams that ship production software — accountable delivery against your roadmap, not staff augmentation by the hour.</p>
+        <ul>
+          <li>Full-stack product engineering</li>
+          <li>Platform &amp; API development</li>
+          <li>Marketplace &amp; consumer-scale systems</li>
+          <li>Legacy modernization</li>
+          <li>Data infrastructure &amp; analytics</li>
+          <li>Dedicated delivery pods</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="tag">02 — Automate</div>
+        <h3>AI Implementation &amp; Consulting</h3>
+        <p>AI in the workflows where it pays: agents, model routing, and automation wired into your actual systems — measured in hours returned, not demos shipped.</p>
+        <ul>
+          <li>AI agents in production workflows</li>
+          <li>Voice AI — inbound, outbound &amp; scheduling</li>
+          <li>RAG pipelines over your own data</li>
+          <li>Multi-model architecture &amp; routing</li>
+          <li>CRM &amp; revenue-ops automation</li>
+          <li>Executive AI strategy</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="tag">03 — Operate</div>
+        <h3>Back Office Operations</h3>
+        <p>The functions every company needs and none should staff at full weight — run as managed services with defined SLAs and a monthly operating review.</p>
+        <ul>
+          <li>CX teams &amp; 24/7 support operations</li>
+          <li>Finance ops &amp; bookkeeping</li>
+          <li>Billing, collections &amp; dispute ops</li>
+          <li>HR, payroll &amp; contractor management</li>
+          <li>Vendor &amp; procurement management</li>
+          <li>Trust &amp; safety operations</li>
+        </ul>
+      </div>
+      <div class="svc">
+        <div class="tag">04 — Administer</div>
+        <h3>MSO Suite</h3>
+        <p>Management services for regulated and multi-entity businesses: the corporate, compliance, and administrative spine that lets licensed professionals practice and operators operate.</p>
+        <ul>
+          <li>Entity formation &amp; administration</li>
+          <li>Licensing &amp; credentialing support</li>
+          <li>Regulatory &amp; multi-jurisdiction compliance</li>
+          <li>Payer &amp; network enrollment</li>
+          <li>Contract &amp; vendor administration</li>
+          <li>Tax &amp; statutory-account administration</li>
+        </ul>
+      </div>
+      <div class="svc svc-wide">
+        <div>
+          <div class="tag">05 — Distribute</div>
+          <h3>Marketing &amp; Advertising Services</h3>
+          <p>Performance media at internet scale. We operate one of the largest direct-navigation traffic networks in the world and route qualified visitors to the brands that convert them — alongside the lifecycle, affiliate, and CRM marketing operations to keep them.</p>
+          <ul>
+            <li>Direct-navigation &amp; domain traffic monetization</li>
+            <li>Performance &amp; affiliate marketing</li>
+            <li>Brand-targeted traffic routing</li>
+            <li>Lifecycle &amp; CRM marketing ops</li>
+            <li>Paid acquisition management</li>
+            <li>Landing page &amp; funnel optimization</li>
+          </ul>
+        </div>
+        <div class="big">1B+<small>visitors routed to targeted brands annually</small></div>
+      </div>
+      <div class="svc svc-wide">
+        <div>
+          <div class="tag">06 — Lead</div>
+          <h3>Executive Strategy, Management &amp; Board Services</h3>
+          <p>Founder-operator leadership for companies in build mode, turnaround, or transition — fractional executives, board service, and hands-on management from people who have owned the P&amp;L, not just advised on it.</p>
+          <ul>
+            <li>Fractional C-suite &amp; interim management</li>
+            <li>Board seats &amp; independent director service</li>
+            <li>Corporate strategy &amp; operating plans</li>
+            <li>M&amp;A, integration &amp; carve-out support</li>
+            <li>Turnaround &amp; restructuring leadership</li>
+            <li>Founder &amp; CEO advisory</li>
+          </ul>
+        </div>
+        <div class="big" style="font-size:clamp(30px,3.6vw,52px);line-height:1.08">Operators in the room,<br>not consultants on the phone.<small>Leadership backed by the five practices above</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="serve" class="serve">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Who we serve</h2>
+      <p>We work behind consumer platforms and regulated operators — companies where scale is high, margins are watched, and headcount is a choice.</p>
+    </div>
+    <div class="serve-row">
+      <div class="serve-cell"><span class="k">Marketplaces</span><h5>On-demand &amp; service marketplaces</h5><p>Two-sided platforms where supply operations, CX, and trust &amp; safety decide the P&amp;L.</p></div>
+      <div class="serve-cell"><span class="k">Health &amp; wellness</span><h5>Wellness &amp; healthcare operators</h5><p>Provider networks and wellness platforms that need MSO structure, credentialing, and compliant ops.</p></div>
+      <div class="serve-cell"><span class="k">Consumer</span><h5>Consumer software &amp; subscription</h5><p>Products with large user bases where support volume and billing ops scale faster than revenue.</p></div>
+      <div class="serve-cell"><span class="k">Portfolios</span><h5>Holding companies &amp; PE-backed operators</h5><p>Multi-entity groups that want one shared services layer instead of duplicated G&amp;A.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How we work</h2>
+      <p>No discovery-phase purgatory. We map the work, take ownership of it, and report against numbers you already track.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">/01</div><h4>Map</h4><p>Two-week audit of the workflows, systems, and headcount behind the function you want off your plate.</p></div>
+      <div class="step"><div class="n">/02</div><h4>Take over</h4><p>We assume the function with a defined SLA — engineering velocity, ticket resolution, close calendar, whatever the unit is.</p></div>
+      <div class="step"><div class="n">/03</div><h4>Automate</h4><p>Every process we run gets an automation pass. The cost of the function drops as the AI layer absorbs the repetitive work.</p></div>
+      <div class="step"><div class="n">/04</div><h4>Report</h4><p>Monthly operating review against the baseline. You see the same dashboard we do.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="scale" role="region" aria-label="Scale">
+  <div class="wrap">
+    <div><b>1B+</b><span>visitors routed to brands annually</span></div>
+    <div><b>10s of M</b><span>end users reached through partners</span></div>
+    <div><b>3</b><span>continents of operating coverage</span></div>
+    <div><b>−40%+</b><span>typical cost vs. in-house function</span></div>
+  </div>
+</div>
+
+<section id="ai">
+  <div class="wrap ai-strip">
+    <div>
+      <div class="eyebrow">The AI practice</div>
+      <h2>AI that survives contact with production</h2>
+      <p>Most AI consulting ends at a slide deck. Ours ends in production: voice agents answering and placing calls, RAG pipelines grounding answers in your own data, agents working inside your CRM and finance close — instrumented, routed across models, and owned by us until your team can own it.</p>
+      <p>Because we also run back-office operations at consumer scale, we automate from the operator's seat. We know which thirty minutes of a workflow actually matter.</p>
+      <a class="btn btn-primary" href="start.html?focus=ai" style="display:inline-block;margin-top:14px">Book an AI audit</a>
+    </div>
+    <div class="term" role="img" aria-label="Terminal output showing an automation run summary">
+      <span class="c"># mediamatrix · ops-agent · daily run</span><br>
+      <span class="b">▸</span> voice agent handled <span class="g">186</span> calls · 84% resolved, 12% booked<br>
+      <span class="b">▸</span> triaged <span class="g">412</span> support tickets · 91% auto-resolved via RAG<br>
+      <span class="b">▸</span> reconciled <span class="g">38</span> vendor invoices · 2 flagged<br>
+      <span class="b">▸</span> routed across 3 models · cost/task <span class="g">−64%</span> vs. baseline<br>
+      <span class="c"># human hours returned today: 31.5</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Run lean. Ship fast. Sleep at night.</h2>
+  <p>Tell us what's eating your week — engineering, AI adoption, the back office, entity administration, growth, or leadership itself — and we'll come back with a takeover plan and a number.</p>
+  <a class="btn" href="start.html">Start the conversation</a>
+</section>
+
+<footer>
+  <div>© 2026 Media Matrix LLC · San Juan, Puerto Rico</div>
+  <div>hello@mediamatrix.com</div>
+</footer>
+
+<script>
+const cv=document.getElementById('matrix'),cx=cv.getContext('2d');
+let W,H,cols,rows,gap=64,pulses=[];
+function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;
+  cols=Math.ceil(W/(gap*devicePixelRatio))+1;rows=Math.ceil(H/(gap*devicePixelRatio))+1;}
+size();addEventListener('resize',size);
+function spawn(){const horiz=Math.random()<.5;
+  pulses.push({horiz,line:Math.floor(Math.random()*(horiz?rows:cols)),pos:-.05,speed:.0016+Math.random()*.002});}
+setInterval(spawn,1400);spawn();spawn();
+function draw(){cx.clearRect(0,0,W,H);const g=gap*devicePixelRatio;
+  cx.fillStyle='rgba(12,22,34,0.13)';
+  for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){cx.beginPath();cx.arc(i*g,j*g,1.4*devicePixelRatio,0,7);cx.fill();}
+  pulses=pulses.filter(p=>p.pos<1.1);
+  for(const p of pulses){p.pos+=p.speed;
+    const x=p.horiz?p.pos*W:p.line*g, y=p.horiz?p.line*g:p.pos*H;
+    const grad=cx.createRadialGradient(x,y,0,x,y,g*1.6);
+    grad.addColorStop(0,'rgba(34,64,242,0.55)');grad.addColorStop(1,'rgba(34,64,242,0)');
+    cx.fillStyle=grad;cx.beginPath();cx.arc(x,y,g*1.6,0,7);cx.fill();
+    cx.fillStyle='#2240F2';cx.beginPath();cx.arc(x,y,2.6*devicePixelRatio,0,7);cx.fill();}
+  requestAnimationFrame(draw);}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)draw();
+</script>
+</body>
+</html>

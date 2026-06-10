@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start a project — Media Matrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0C1622;--ink-2:#1B2A3D;--paper:#F6F7F4;--line:#D8DCD4;--cobalt:#2240F2;--copper:#C2632B;
+--mono:'IBM Plex Mono',monospace;--display:'Archivo',sans-serif;--body:'Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--cobalt);color:#fff}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(246,247,244,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font-family:var(--display);font-weight:800;font-stretch:90%;font-size:17px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .mark{width:22px;height:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.logo .mark span{background:var(--ink);border-radius:1px}
+.logo .mark span:nth-child(5){background:var(--cobalt)}
+.nav-back{font-family:var(--mono);font-size:12.5px;text-decoration:none;opacity:.75}
+.nav-back:hover{opacity:1}
+@media(max-width:760px){nav{padding:14px 20px}}
+main{max-width:760px;margin:0 auto;padding:160px 40px 100px}
+@media(max-width:760px){main{padding:130px 20px 70px}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);margin-bottom:22px}
+h1{font-family:var(--display);font-weight:750;font-stretch:80%;font-size:clamp(38px,6vw,64px);line-height:1;letter-spacing:-.025em;margin-bottom:20px}
+.sub{color:var(--ink-2);font-size:16px;max-width:52ch;margin-bottom:54px}
+.field{margin-bottom:30px}
+label{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:10px}
+input[type=text],input[type=email],textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:3px;padding:13px 14px;font-family:var(--body);font-size:15px;color:var(--ink);transition:border-color .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--cobalt)}
+textarea{min-height:140px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:var(--mono);font-size:12.5px;padding:10px 16px;border:1px solid var(--line);background:#fff;border-radius:3px;cursor:pointer;user-select:none;transition:all .15s}
+.chip.on{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.btn{font-family:var(--mono);font-size:13.5px;text-decoration:none;border:none;cursor:pointer;padding:15px 30px;border-radius:3px;background:var(--cobalt);color:#fff;transition:background .15s}
+.btn:hover{background:var(--ink)}
+.note{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:16px}
+.alt{margin-top:60px;padding-top:30px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.alt a{color:var(--cobalt);text-decoration:none}
+.alt a:hover{text-decoration:underline}
+a:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html"><span class="mark"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>MEDIA MATRIX</a>
+  <a class="nav-back" href="index.html">← Back to site</a>
+</nav>
+<main>
+  <div class="eyebrow">Start a project</div>
+  <h1>Tell us what's eating your week.</h1>
+  <p class="sub">Three fields and a sentence is enough. We reply within one business day with next steps — usually a 30-minute call, then a takeover plan and a number.</p>
+
+  <div class="field">
+    <label>What do you need? (pick any)</label>
+    <div class="chips" id="chips" role="group" aria-label="Service selection">
+      <button type="button" class="chip" data-v="Outsourced Development">Development</button>
+      <button type="button" class="chip" data-v="AI Implementation / RAG / Voice AI">AI implementation</button>
+      <button type="button" class="chip" data-v="Back Office Operations">Back office</button>
+      <button type="button" class="chip" data-v="MSO / Entity Administration">MSO suite</button>
+      <button type="button" class="chip" data-v="Marketing & Advertising / Traffic">Marketing &amp; traffic</button>
+      <button type="button" class="chip" data-v="Executive / Board Services">Executive &amp; board</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field"><label for="name">Name</label><input type="text" id="name" autocomplete="name"></div>
+    <div class="field"><label for="company">Company</label><input type="text" id="company" autocomplete="organization"></div>
+  </div>
+  <div class="field"><label for="email">Email</label><input type="email" id="email" autocomplete="email"></div>
+  <div class="field"><label for="msg">What's going on?</label><textarea id="msg" placeholder="One or two sentences. What function, what scale, what's broken."></textarea></div>
+
+  <button class="btn" id="send" type="button">Send it →</button>
+  <div class="note">Opens a pre-filled email to hello@mediamatrix.com from your mail client. Nothing is stored on this site.</div>
+
+  <div class="alt">Prefer to skip the form? Email <a href="mailto:hello@mediamatrix.com">hello@mediamatrix.com</a> directly.</div>
+</main>
+<script>
+const chips=document.querySelectorAll('.chip');
+chips.forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+// Pre-select via ?focus=ai
+const focus=new URLSearchParams(location.search).get('focus');
+if(focus==='ai')document.querySelector('[data-v^="AI"]').classList.add('on');
+document.getElementById('send').addEventListener('click',()=>{
+  const sel=[...document.querySelectorAll('.chip.on')].map(c=>c.dataset.v).join(', ')||'Not specified';
+  const v=id=>document.getElementById(id).value.trim();
+  const subject=encodeURIComponent(`New project inquiry — ${v('company')||v('name')||'website'}`);
+  const body=encodeURIComponent(
+`Services: ${sel}
+Name: ${v('name')}
+Company: ${v('company')}
+Email: ${v('email')}
+
+${v('msg')}`);
+  location.href=`mailto:hello@mediamatrix.com?subject=${subject}&body=${body}`;
+});
+</script>
+</body>
+</html>
